@@ -1,0 +1,21 @@
+<span class="container text-center w-100"><button (click)="goToMovies()" type="button" class="btn btn-link">Films</button> | <button (click)="goToMyMovies()" type="button" class="btn btn-link">Mes Films</button> | <button (click)="deconnexion()" type="button" class="btn btn-link">Déconnexion</button></span>
+
+<h1 class="text-center container">Mes Films</h1>
+
+<div class="container border">
+  <div *ngFor="let elt of my_movies" class="m-3 p-3 row border">
+    <div class="col-6">
+      <img
+        style="width: 200px"
+        src="./assets/images/movie_{{ elt.id }}.jpeg"
+        alt="affiche film"
+      />
+    </div>
+
+    <div class="col-6 d-flex align-items-center text-center">
+      {{ elt.title }}<br /><br />
+      {{ elt.year }}<br /><br />
+      {{ elt.type }}
+    </div>
+  </div>
+</div>
