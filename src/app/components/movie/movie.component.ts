@@ -13,7 +13,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MovieComponent implements OnInit {
   movies: Array<Movie> = [];
-  idUser: number = 0;
   user: User = {};
   constructor(
     private ms: MovieService,
@@ -28,7 +27,7 @@ export class MovieComponent implements OnInit {
     });
     setTimeout(() => {
       this.user = JSON.parse(sessionStorage.getItem('user') ?? '');
-    }, 1000);
+    }, 500);
   }
   deconnexion() {
     localStorage.removeItem('jeton');

@@ -10,7 +10,7 @@ import { User } from '../interfaces/user';
 export class MovieService {
   private url: string = 'http://localhost:8000/ws/movies';
   private movies: Array<object> = [];
-  private my_movies: Array<object> = [];
+  private my_movies: Array<Movie> = [];
   constructor(private http: HttpClient) {}
 
   getAllMovies() {
@@ -23,6 +23,17 @@ export class MovieService {
     this.movies = user.movies ?? [];
     this.movies.push({ id: movie_id });
 
+    return this.http.put<User>(`http://localhost:8000/ws/users/` + user_id, {
+      id: user_id,
+      movies: this.movies,
+    });
+  }
+  removeAMovie(user: User, user_id: any, movie_id: any) {
+    this.my_movies = user.movies ?? [];
+
+    this.my_movies.forEach((element,index)=>{      
+      if(element.id==movie_id) this.movies.splice(index,1);
+   });
     return this.http.put<User>(`http://localhost:8000/ws/users/` + user_id, {
       id: user_id,
       movies: this.movies,
